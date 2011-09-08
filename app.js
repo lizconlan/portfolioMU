@@ -83,10 +83,20 @@ function getData(username, callback) {
 function getDetail(repo, list, callback) {
   var link = "https://scraperwiki.com/scrapers/" + repo;
   rest.get("https://api.scraperwiki.com/api/1.0/scraper/getinfo?format=jsondict&name=" + repo + "&version=-1").on('complete', function(data) {
-    repo_data = {"sw_name": repo, "name": data[0].title, "html_url": link, "language": data[0].language, "description": data[0].description, "homepage": ""}
+    repo_data = {"sw_name": repo, "name": data[0].title, "html_url": link, "language": capLanguage(data[0].language), "description": data[0].description, "homepage": ""}
     list.push(repo_data);
     callback(list);
   });
+}
+
+function capLanguage(text) {
+  if (text == "php") {
+    return "PHP"
+  } else {
+    first = text.charAt(0);
+    return first.toUpperCase() + text.substring(1);
+  }
+end
 }
 
 // start the server!
