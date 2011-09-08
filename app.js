@@ -8,7 +8,7 @@ var app = module.exports = express.createServer();
 var util = require('util')
 var Step = require('step');
 
-var scraperwiki = require('./lib/scraperwiki.js')
+//var scraperwiki = require('./lib/scraperwiki.js')
 
 // Configuration
 
