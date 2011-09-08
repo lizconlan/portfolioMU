@@ -1,0 +1,11 @@
+{
+  "name": "example",
+  "version": "0.0.4",
+  "dependencies": {
+    "express": "2.2.0",
+    "restler": ">=0.2.0",
+    "jade": "0.15.x",
+    "stylus": "0.15.x",
+    "step": ">0"
+  }
+}
