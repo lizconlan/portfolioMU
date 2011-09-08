@@ -89,11 +89,11 @@ function getDetail(repo, list, callback) {
   });
 }
 
-// Only listen on $ node app.js
-if (!module.parent) {
-  app.listen();
-  console.log("Express server listening on port %d", app.address().port);
-}
+// start the server!
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
 
 
 
