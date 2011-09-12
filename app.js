@@ -3,12 +3,11 @@
  */
 
 var express = require('express');
-var rest = require('restler');
 var app = module.exports = express.createServer();
 var util = require('util')
 var Step = require('step');
 
-var scraperwiki = require('./lib/scraperwiki.js')
+var ScraperwikiList = require('./lib/scraperwiki.js')
 
 // Configuration
 
@@ -32,12 +31,23 @@ app.configure('production', function(){
 
 // Routes
 
+
 app.get('/', function(req, res){
-  result = new scraperwiki('lizconlan', function(sw) {
+  new ScraperwikiList('lizconlan', function(data) {
     res.render('stuff', {
-          user: sw.username
-        , own: sw.own
-        });
+      user: data.username
+      , own: data.own
+    })
+  });
+});
+
+
+app.get('/:username', function(req, res){
+  new ScraperwikiList(req.params.username, function(data) {
+    res.render('stuff', {
+      user: data.username
+      , own: data.own
+    })
   });
 });
 
