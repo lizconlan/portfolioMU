@@ -7,7 +7,7 @@ var app = module.exports = express.createServer();
 var util = require('util')
 var Step = require('step');
 
-var ScraperwikiList = require('./lib/scraperwiki.js')
+var GithubList = require('./lib/github.js')
 
 // Configuration
 
@@ -29,12 +29,18 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
+
+process.addListener('uncaughtException', function (err, stack) {
+  console.log('------------------------');
+  console.log('Exception: ' + err);
+  console.log(err.stack);
+  console.log('------------------------');
+});
+
 // Routes
-
-
 app.get('/', function(req, res){
-  new ScraperwikiList('lizconlan', function(data) {
-    res.render('stuff', {
+  new GithubList('lizconlan', function (data) {
+    res.render('github-own', {
       user: data.username
       , own: data.own
     })
@@ -42,15 +48,14 @@ app.get('/', function(req, res){
 });
 
 
-app.get('/:username', function(req, res){
-  new ScraperwikiList(req.params.username, function(data) {
-    res.render('stuff', {
+app.get('/:username', function (req, res){
+  new GithubList(req.params.username, function (data) {
+    res.render('github-own', {
       user: data.username
       , own: data.own
     })
   });
 });
-
 
 // start the server!
 var port = process.env.PORT || 3000;
