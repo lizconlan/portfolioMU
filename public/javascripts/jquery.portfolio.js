@@ -11,7 +11,10 @@ function PortfolioClient() {
     });
     
     self.client.subscribe('/data', function(message) {
-      $('#' + message.section).append(message.html);
+      if (message.html != "") {
+        $('#' + message.section).append(message.html);
+        $('#' + message.section).show();
+      }
     });
   };
   

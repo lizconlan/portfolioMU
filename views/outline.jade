@@ -1,5 +1,5 @@
-h2 #{user}'s projects
 section(id='github-own')
+  h2 #{user}'s projects
   - for (var i in stuff)
     - if (stuff[i].description != "")
       article(id='sw-' + stuff[i].name)
@@ -9,5 +9,5 @@ section(id='github-own')
         p(class='description') #{stuff[i].description}
         p(class='language') #{stuff[i].language}
       
-h2 projects #{user} has worked on
-section(id='github-collab')
+section(id='github-collab', style='display:none')
+  h2 projects #{user} has worked on
