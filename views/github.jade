@@ -1,0 +1,8 @@
+- for (var i in stuff)
+  - if (stuff[i].description != "")
+    article(id='sw-' + stuff[i].name)
+      header
+        h3
+          a(href=stuff[i].html_url) #{stuff[i].name}
+      p(class='description') #{stuff[i].description}
+      p(class='language') #{stuff[i].language}

@@ -1,9 +1,0 @@
-section(id='github-own')
-- for (var i in own)
-  - if (own[i].description != "")
-    article(id='sw-' + own[i].name)
-      header
-        h3
-          a(href=own[i].html_url) #{own[i].name}
-      p(class='description') #{own[i].description}
-      p(class='language') #{own[i].language}
