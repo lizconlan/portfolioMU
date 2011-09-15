@@ -1,13 +1,17 @@
-section(id='github-own')
-  h2 #{user}'s projects
-  - for (var i in stuff)
-    - if (stuff[i].description != "")
-      article(id='sw-' + stuff[i].name)
-        header
-          h3
-            a(href=stuff[i].html_url) #{stuff[i].name}
-        p(class='description') #{stuff[i].description}
-        p(class='language') #{stuff[i].language}
+- if (user.has_github == false)
+  p No github account found for #{user.username}
+- else
+  section(id='github-own')
+    h2 #{user.username}'s projects
+    - for (var i in owned = user.github.own)
+      - if (owned[i].description != "")
+        article(id='gh-' + owned[i].name)
+          header
+            h3
+              a(href=owned[i].html_url) #{owned[i].name}
+          p(class='description') #{owned[i].description}
+          - if (owned[i].language != "")
+            p(class='language') #{owned[i].language}
       
-section(id='github-collab', style='display:none')
-  h2 projects #{user} has worked on
+  section(id='github-collab', style='display:none')
+    h2 projects #{user.username} has worked on
