@@ -8,7 +8,7 @@ function PortfolioClient(clientpath) {
   
   this.setupBayeuxHandlers = function() {
     self.client = new Faye.Client('/faye', {
-      timeout: 180
+      timeout: 30
     });
     
     self.client.subscribe(clientpath, function(message) {
