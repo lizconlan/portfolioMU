@@ -1,5 +1,6 @@
-function PortfolioClient() {
+function PortfolioClient(clientpath) {
   var self = this;
+  this.clientpath = clientpath;
   
   this.init = function() {
     self.setupBayeuxHandlers();
@@ -10,7 +11,7 @@ function PortfolioClient() {
       timeout: 120
     });
     
-    self.client.subscribe('/data', function(message) {
+    self.client.subscribe(clientpath, function(message) {
       if (message.html != "") {
         $('#' + message.section).append(message.html);
         $('#' + message.section).show();
@@ -23,6 +24,6 @@ function PortfolioClient() {
 
 var portfolioClient;
 jQuery(function() {
-  portfolioClient = new PortfolioClient();
+  portfolioClient = new PortfolioClient(window.location.pathname);
 });
 
