@@ -1,0 +1,10 @@
+-if repo["description"] != "" or repo["html_url"][0..22] == "https://scraperwiki.com"
+  %article
+    %header
+      %h3
+        %a{:href => repo["html_url"]}= repo["name"]
+        -if repo["language"]
+          %span.language
+            ="#{repo["language"]}"
+    -unless repo["description"] == ""
+      %p= repo["description"]

@@ -1,0 +1,38 @@
+%nav
+  - navcount = 0
+  - if @repos.orgs.count > 0
+    -navcount += 1
+    %a{:href => "#memberships"} Memberships
+  - if @repos.own.count > 0
+    -if navcount > 0
+      &middot;
+    -navcount += 1
+    %a{:href => "#projects"} Code Projects
+  - if @repos.contributor.count > 0
+    -if navcount > 0
+      &middot;
+    %a{:href => "#contributions"} Code Contributions
+
+- if @repos.orgs.count > 0
+  %h2 Memberships
+  
+  .projects
+    %dl
+      - @repos.orgs.keys.each do |org|
+        %dt
+          %h3= org
+        %dd
+          -@repos.orgs[org].each do |repo|
+            =haml :_repo, :locals => { :repo => repo }
+
+- if @repos.own.count > 0         
+  %section{:class=>"projects", :id=>"projects"}
+    %h2 Code Projects
+    -@repos.own.sort_by{ |x| x["created_at"]}.reverse.each do |repo|
+      =haml :_repo, :locals => { :repo => repo }
+
+- if @repos.contributor.count > 0
+  %section{:class=>"projects", :id=>"contributions"}      
+    %h2 Code Contributions
+    -@repos.contributor.sort_by{ |x| x["created_at"]}.reverse.each do |repo|
+      =haml :_repo, :locals => { :repo => repo }

@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+%html{:lang=>"en"}
+  %head
+    %meta{:charset=>"utf-8"}
+    %title= @title.strip
+    <!--[if lt IE 9]><script>
+    document.createElement("article");
+    document.createElement("section");
+    document.createElement("time");
+    </script>
+    <![endif]-->
+    %link{:rel=>"stylesheet", :type=>"text/css", :media=>"screen,projector", :href=>"/styles/style.css"}
+  %body
+    %h1= @title.strip
+    =yield
