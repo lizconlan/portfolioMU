@@ -20,7 +20,8 @@
     %dl
       - @repos.orgs.keys.each do |org|
         %dt
-          %h3= org
+          %h3
+            %a{:href => "https://github.com/#{org}"}= org
         %dd
           -@repos.orgs[org].each do |repo|
             =haml :_repo, :locals => { :repo => repo }
