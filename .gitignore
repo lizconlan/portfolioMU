@@ -3,3 +3,4 @@ node_modules
 .monitor
 *.log
 public/stylesheets/*.css
+config/*.yml
