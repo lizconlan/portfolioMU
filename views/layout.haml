@@ -7,9 +7,13 @@
     document.createElement("article");
     document.createElement("section");
     document.createElement("time");
+    document.createElement("footer");
     </script>
     <![endif]-->
     %link{:rel=>"stylesheet", :type=>"text/css", :media=>"screen,projector", :href=>"/styles/style.css"}
   %body
     %h1= @title.strip
     =yield
+    %footer
+      %a{:href => "https://github.com/lizconlan/portfolioMU"} programming.by on github
+      
